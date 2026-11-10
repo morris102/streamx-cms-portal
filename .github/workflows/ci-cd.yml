@@ -1,0 +1,34 @@
+name: Build Docker CI
+
+on:
+    push:
+        branches:
+            - main
+
+    workflow_dispatch:
+
+jobs:
+    docker:
+        runs-on: ubuntu-latest
+
+        steps:
+            # 1. Checkout source code
+            - name: Checkout source code
+              uses: actions/checkout@v4
+
+            # 2. Login Docker Hub
+            - name: Login to Docker Hub
+              uses: docker/login-action@v3
+              with:
+                  username: ${{ secrets.DOCKERHUB_USERNAME }}
+                  password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+            # 3. Build Docker image
+            - name: Build Docker image
+              run: |
+                  docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/streamx-cms-portal:latest .
+
+            # 4. Push Docker image
+            - name: Push Docker image
+              run: |
+                  docker push ${{ secrets.DOCKERHUB_USERNAME }}/streamx-cms-portal:latest
