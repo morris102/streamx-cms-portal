@@ -37,7 +37,7 @@ jobs:
             - name: Checkout k8s-manifest repository
               uses: actions/checkout@v4
               with:
-                  repository: streamx-project/streamx-k8s-manifest
+                  repository: morris102/streamx-k8s-manifest
                   token: ${{ secrets.MANIFEST_REPO_TOKEN }}
 
             # 6. Update image tag in manifest
