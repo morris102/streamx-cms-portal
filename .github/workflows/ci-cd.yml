@@ -38,7 +38,7 @@ jobs:
               uses: actions/checkout@v4
               with:
                   repository: streamx-project/streamx-k8s-manifest
-                  token: ${{ secrets.GITHUB_TOKEN }}
+                  token: ${{ secrets.MANIFEST_REPO_TOKEN }}
 
             # 6. Update image tag in manifest
             - name: Update image tag in manifest
